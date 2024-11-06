@@ -1,7 +1,15 @@
 {
-  "short_name": "短名称",
-  "name": "这是一个完整名称",
-  "icons": [{ "src": "144x144.png", "type": "image/png", "sizes": "144x144" }],
+  "name": "网站完整名称",
+  "short_name": "网站简称",
+  "start_url": "index.html",
   "display": "standalone",
-  "start_url": "index.html"
+  "background_color": "red",
+  "description": "网站描述",
+  "icons": [
+    {
+      "src": "144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ]
 }

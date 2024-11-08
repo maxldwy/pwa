@@ -18,7 +18,7 @@
       // 注册 Service worker
       if ('serviceWorker' in window.navigator) {
         navigator.serviceWorker
-          .register('/sw.js')
+          .register('./sw.js')
           .then((registration) => {
             if (registration.installing) {
               console.log('正在安装 Service worker')

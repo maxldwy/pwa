@@ -5,27 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manifest</title>
-  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="/index.css" />
   <!-- 引用manifest文件 -->
+  <link rel="manifest" href="/manifest.json" />
 </head>
 
 <body>
-  <h1>Manifest Page</h1>
+  <h1>Manifest Page123</h1>
   <script>
-    // 注册 Service worker
-    if ('serviceWorker' in window.navigator) {
-      const registerServiceWorker = async () => {
-        if ('serviceWorker' in navigator) {
-          try {
-            // const registration = await navigator.serviceWorker.register(
-            //   './sw.js',
-            //   {
-            //      scope: '/',
-            //   }
-            // )
-
-            const registration = await navigator.serviceWorker.register('sw.js')
-
+    // 防止与其他资源竞争，故在onload中进行创建service worker
+    window.addEventListener('load', () => {
+      // 注册 Service worker
+      if ('serviceWorker' in window.navigator) {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((registration) => {
             if (registration.installing) {
               console.log('正在安装 Service worker')
             } else if (registration.waiting) {
@@ -33,14 +27,27 @@
             } else if (registration.active) {
               console.log('激活 Service worker')
             }
-          } catch (error) {
+          })
+          .catch((error) => {
             console.error(`注册失败：${error}`)
-          }
-        }
+          })
       }
+    })
 
-      registerServiceWorker()
+    /**
+     * 如果页面一进来就没有网络，给用户一个通知
+     */
+    if (Notification.permission === 'default') {
+      Notification.requestPermission()
     }
+    if (!navigator.onLine) {
+      new Notification('提示', { body: '你当前没有网络，访问的是缓存' })
+    }
+    window.addEventListener('online', () => {
+      new Notification('提示', {
+        body: '你已经连上网络了，请刷新访问最新的数据',
+      })
+    })
   </script>
 </body>
 

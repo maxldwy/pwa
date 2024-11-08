@@ -1,10 +1,11 @@
 {
-  "name": "网站完整名称",
-  "short_name": "网站简称",
+  "name": "王越的PWA应用",
+  "short_name": "PWA_APP",
+  "description": "网站描述",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "red",
-  "description": "网站描述",
+  "background_color": "#999999",
+  "theme_color": "#1976d2",
   "icons": [
     {
       "src": "144x144.png",

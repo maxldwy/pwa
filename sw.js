@@ -10,7 +10,13 @@
  */
 
 const CACHE_NAME = 'cache_v5'
-const CACHE_URLS = ['/', './144x144.png', './manifest.json', './index.css']
+const CACHE_URLS = [
+  '/',
+  '/pwa',
+  './144x144.png',
+  './manifest.json',
+  './index.css',
+]
 
 self.addEventListener('install', async (event) => {
   console.log('install')

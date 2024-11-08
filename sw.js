@@ -71,7 +71,7 @@ async function networkFirst(request) {
 }
 // 缓存优先 如果是需要对整个页面请求资源进行缓存管理，那么可以通过fetch事件拦截请求实现动态缓存，代码如下：
 async function cacheFirst(request) {
-  const cache = caches.open(CACHE_NAME)
+  const cache = await caches.open(CACHE_NAME)
   try {
     console.log('cacheFirst', request)
     const cached = await cache.match(request)

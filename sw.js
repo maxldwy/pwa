@@ -9,14 +9,8 @@
  * 6.cache.put(request,fetchResponse)将请求/响应直接存储到缓存对象中
  */
 
-const CACHE_NAME = 'cache_v5'
-const CACHE_URLS = [
-  '/',
-  '/pwa',
-  './144x144.png',
-  './manifest.json',
-  './index.css',
-]
+const CACHE_NAME = 'cache_v6'
+const CACHE_URLS = ['/', '/144x144.png', '/manifest.json', '/index.css']
 
 self.addEventListener('install', async (event) => {
   console.log('install')
@@ -71,19 +65,18 @@ async function networkFirst(request) {
     cache.put(request, fetchResponse.clone())
     return fetchResponse
   } catch (error) {
+    console.error('Network error:', error)
     const cached = await cache.match(request)
-    return cached
+    return cached || new Response('networkFirst error', { status: 500 })
   }
 }
 // 缓存优先 如果是需要对整个页面请求资源进行缓存管理，那么可以通过fetch事件拦截请求实现动态缓存，代码如下：
 async function cacheFirst(request) {
   const cache = await caches.open(CACHE_NAME)
   try {
-    console.log('cacheFirst', request)
     const cached = await cache.match(request)
-    return cached
+    return cached || new Response('cacheFirst error', { status: 404 })
   } catch (error) {
-    console.dir(request)
     const fetchResponse = await fetch(request)
     return fetchResponse
   }

@@ -3,6 +3,11 @@ async function renderHtml() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
+      let html = ''
+      data.forEach((element) => {
+        html += `<h3>随机数为：${element.val}</h3>`
+      })
+      document.getElementById('pwa').innerHTML = html
     })
     .catch((error) => {
       console.error('Error:', error)

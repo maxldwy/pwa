@@ -1,9 +1,11 @@
-const port = 8080
-const path = require('path')
-// 导入 express
 const express = require('express')
+const path = require('path')
+const cors = require('cors')
+
+const port = 3008
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // 设置静态文件目录
@@ -11,17 +13,21 @@ app.use(express.static(path.join(__dirname, '/web')))
 
 // 首页路由（可选）
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'web', 'index.html'))
+  const filePath = path.join(__dirname, 'web', 'index.html')
+
+  res.sendFile(filePath)
 })
 
 app.get('/api/getList', async (req, res) => {
-  res.status(200).json({
-    code: '1',
-    msg: '暂无漂流瓶',
-  })
+  const arr = []
+  for (i = 0; i < 6; i++) {
+    arr.push({
+      val: Math.floor(Math.random() * 101),
+    })
+  }
+  res.status(200).json(arr)
 })
 
-// 开启服务器，端口是 3000
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })

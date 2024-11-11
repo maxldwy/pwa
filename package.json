@@ -19,6 +19,7 @@
   "homepage": "https://github.com/maxldwy/pwa#readme",
   "dependencies": {
     "@vercel/node": "^3.2.24",
+    "cors": "^2.8.5",
     "express": "^4.21.1"
   }
 }

@@ -10,7 +10,11 @@
  */
 
 const CACHE_NAME = 'cache_v6'
-const CACHE_URLS = ['/', '/144x144.png', '/manifest.json', '/index.css']
+
+const CACHE_URLS =
+  window.location.hostname.indexOf('github') > 0
+    ? ['./', './144x144.png', './manifest.json', './index.css']
+    : [('/', '/144x144.png', '/manifest.json', '/index.css')]
 
 self.addEventListener('install', async (event) => {
   console.log('install')

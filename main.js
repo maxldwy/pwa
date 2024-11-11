@@ -1,4 +1,4 @@
-const port = 80
+const port = 8080
 const path = require('path')
 // 导入 express
 const express = require('express')
@@ -9,10 +9,10 @@ app.use(express.json())
 // 设置静态文件目录
 app.use(express.static(path.join(__dirname, '/web')))
 
-// // 首页路由（可选）
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+// 首页路由（可选）
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'web', 'index.html'))
+})
 
 app.get('/api/getList', async (req, res) => {
   res.status(200).json({

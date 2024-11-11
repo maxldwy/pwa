@@ -2,7 +2,6 @@ async function renderHtml() {
   fetch('./api/getList')
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       let html = ''
       data.forEach((element) => {
         html += `<h3>随机数为：${element.val}</h3>`

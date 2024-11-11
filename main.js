@@ -1,4 +1,4 @@
-const port = 8080
+const port = 80
 const path = require('path')
 // 导入 express
 const express = require('express')

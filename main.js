@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 
 // 设置静态文件目录
-app.use(express.static(path.join(__dirname, './')))
+app.use(express.static(path.join(__dirname, '/web')))
 
 // // 首页路由（可选）
 // app.get('/', (req, res) => {

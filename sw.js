@@ -46,10 +46,10 @@ self.addEventListener('fetch', function (event) {
   console.log('fetch', event.request)
   const request = event.request
   //只缓存同源的资源
-  // const newUrl = new URL(request.url)
-  // if (newUrl.origin !== self.origin) {
-  //   return
-  // }
+  const newUrl = new URL(request.url)
+  if (newUrl.origin !== self.origin) {
+    return
+  }
   //判断资源是否能够请求成功，如果成功就响应结果，如果断网就读取caches缓存
   if (request.url.includes('/api')) {
     //网络请求网络优先

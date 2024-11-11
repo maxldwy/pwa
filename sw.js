@@ -16,8 +16,14 @@ self.addEventListener('install', async (event) => {
 
   const CACHE_URLS =
     self.location.hostname.indexOf('github') > 0
-      ? ['./', './144x144.png', './manifest.json', './index.css']
-      : [('/', '/144x144.png', '/manifest.json', '/index.css')]
+      ? [
+          './',
+          './144x144.png',
+          './manifest.json',
+          './index.css',
+          './api/getList',
+        ]
+      : [('/', '/144x144.png', '/manifest.json', '/index.css', '/api/getList')]
 
   // 打开一个缓存
   const cache = await caches.open(CACHE_NAME)
